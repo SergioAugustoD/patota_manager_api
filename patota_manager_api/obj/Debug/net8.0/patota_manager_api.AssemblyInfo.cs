@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("patota_manager_api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0739e7513b5dcb9211a7cdff9937673c9e2ea654")]
 [assembly: System.Reflection.AssemblyProductAttribute("patota_manager_api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("patota_manager_api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
