@@ -24,6 +24,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
         public IActionResult CreateUser(UserViewModel userViewModel)
         {
             var user = new User(
+                userViewModel.Name,
                 userViewModel.Username,
                 userViewModel.Email,
                 userViewModel.Password

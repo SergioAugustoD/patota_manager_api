@@ -16,7 +16,11 @@
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5177",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PORT_DB": "6543",
+        "SERVER_DB": "aws-0-sa-east-1.pooler.supabase.com",
+        "USER_DB": "postgres.igskknqmtqipydbqyypq",
+        "PASSWORD_DB": "bfShmidj86fmNgfj"
       }
     },
     "https": {
@@ -26,7 +30,11 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7054;http://localhost:5177",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PORT_DB": "6543",
+        "SERVER_DB": "aws-0-sa-east-1.pooler.supabase.com",
+        "USER_DB": "postgres.igskknqmtqipydbqyypq",
+        "PASSWORD_DB": "bfShmidj86fmNgfj"
       }
     },
     "IIS Express": {

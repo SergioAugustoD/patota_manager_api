@@ -9,8 +9,9 @@ namespace patota_manager_api.src.PatotaManager.Api.Models
     [Table("tb_user")]
     public record User
     {
-        public User(string username, string email, string passwordHash)
+        public User(string name, string username, string email, string passwordHash)
         {
+            Name = name;
             Username = username;
             Email = email;
             PasswordHash = PasswordHasher.HashPassword(passwordHash);
@@ -20,8 +21,12 @@ namespace patota_manager_api.src.PatotaManager.Api.Models
         [Column("id")]
         public int UserId { get; private set; }
 
+        [Column("name")]
+        public string Name { get; private set; }
+
         [Column("username")]
         public string Username { get; private set; }
+
 
         [Column("email")]
         public string Email { get; private set; }
@@ -32,7 +37,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Models
 
         [JsonIgnore]
         [Column("created_at")]
-        public DateTime CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     }
 }
 

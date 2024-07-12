@@ -11,12 +11,17 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            var portDb = Environment.GetEnvironmentVariable("PORT_DB");
+            var serverDb = Environment.GetEnvironmentVariable("SERVER_DB");
+            var userDb = Environment.GetEnvironmentVariable("USER_DB");
+            var passwordDb = Environment.GetEnvironmentVariable("PASSWORD_DB");
+
             optionsBuilder.UseNpgsql(
-                "Server=aws-0-sa-east-1.pooler.supabase.com;" +
-                "Port=6543;" +
-                "Database=postgres;" +
-                "User Id=postgres.igskknqmtqipydbqyypq;" +
-                "Password=bfShmidj86fmNgfj;"
+                $"Server={serverDb};" +
+                $"Port={portDb};" +
+                $"Database=postgres;" +
+                $"User Id={userDb};" +
+                $"Password={passwordDb};"
             );
         }
     }

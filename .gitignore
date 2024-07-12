@@ -73,3 +73,7 @@ _ReSharper.*
 *.suo
 *.user
 *.userprefs
+
+#Launch settings
+
+./Properties
