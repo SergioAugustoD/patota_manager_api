@@ -6,5 +6,7 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories.Inter
     public interface IUsersRepository
     {
         public List<UserDTO> GetUsers();
+
+        void CreateUser(User user);
     }
 }

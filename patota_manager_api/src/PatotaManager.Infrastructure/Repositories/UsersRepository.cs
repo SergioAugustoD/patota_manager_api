@@ -22,5 +22,11 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories
             }
             )];
         }
+
+        public void CreateUser(User user)
+        {
+            _dbContext.Users.Add(user);
+            _dbContext.SaveChanges();
+        }
     }
 }
