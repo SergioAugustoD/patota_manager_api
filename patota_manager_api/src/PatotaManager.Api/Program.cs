@@ -1,23 +1,39 @@
+using Microsoft.EntityFrameworkCore;
+using patota_manager_api.src.PatotaManager.Infrastructure.Data;
+using patota_manager_api.src.PatotaManager.Infrastructure.Repositories;
+using patota_manager_api.src.PatotaManager.Infrastructure.Repositories.Interfaces;
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+var conn = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<ApiDbContext>(options =>
+    options.UseSqlite(conn));
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddTransient<IUsersRepository, UsersRepository>();
 
-var url = Environment.GetEnvironmentVariable("URL_SUPA_BASE");
-var key = Environment.GetEnvironmentVariable("KEY_SUPA_BASE");
-
-var options = new Supabase.SupabaseOptions
+builder.Services.AddCors(options =>
 {
-    AutoConnectRealtime = true
-};
+    options.AddPolicy(name: "MyPolicy",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:8080")
+            .AllowAnyHeader()
+            .AllowAnyOrigin()
+            .AllowAnyMethod();
+        });
+});
 
-var supabase = new Supabase.Client(url, key, options);
 
-await supabase.InitializeAsync();
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -28,29 +44,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.UseCors("MyPolicy");
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
