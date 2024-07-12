@@ -1,0 +1,75 @@
+# Ignore Visual Studio files
+.vs/
+
+# Ignore build output
+bin/
+obj/
+
+# Ignore NuGet packages
+/packages/
+
+# Ignore SQLite database files
+*.db
+*.sqlite
+
+# Ignore user settings
+*.user
+*.suo
+*.userprefs
+
+# Ignore Visual Studio debug logs
+*.log
+
+# Ignore Visual Studio temporary files
+*.tmp
+*.bak
+*.cache
+
+# Ignore Visual Studio editor files
+*.sw?
+*.scc
+
+# Ignore Visual Studio auto-generated files
+*.Designer.cs
+*.generated.cs
+*.g.cs
+*.g.i.cs
+
+# Ignore Visual Studio IntelliSense files
+*.nupkg
+*.nuspec
+*.nuspec.tmp
+*.nuspec.rsp
+*.nuspec.rsp.tmp
+*.nuspec.cache
+*.nuspec.cache.tmp
+*.nuspec.config
+*.nuspec.config.tmp
+*.nuspec.xml
+*.nuspec.xml.tmp
+
+# Ignore Visual Studio test results
+TestResults/
+
+# Ignore Visual Studio editor backup files
+_ReSharper.*
+
+# Ignore Visual Studio editor settings
+*.DotSettings
+*.editorconfig
+
+# Ignore Visual Studio editor extensions
+*.vsix
+*.vsixmanifest
+*.vsixlangpack
+
+# Ignore Visual Studio editor layout
+*.vssettings
+*.vstemplate
+
+# Ignore Visual Studio editor files
+*.csproj.user
+*.sln.docstates
+*.suo
+*.user
+*.userprefs
