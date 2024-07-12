@@ -1,4 +1,6 @@
+using patota_manager_api.src.PatotaManager.Api.DTOs;
 using patota_manager_api.src.PatotaManager.Api.Models;
+using patota_manager_api.src.PatotaManager.Common.Helpers;
 using patota_manager_api.src.PatotaManager.Infrastructure.Data;
 using patota_manager_api.src.PatotaManager.Infrastructure.Repositories.Interfaces;
 
@@ -9,9 +11,16 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories
 
         private readonly ApiDbContext _dbContext = dbContext;
 
-        public IEnumerable<User> GetUsers()
+        public List<UserDTO> GetUsers()
         {
-            return [.. _dbContext.Users];
+            return [.. _dbContext.Users.Select(user => new UserDTO()
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                PasswordHash = user.PasswordHash,
+                Email = user.Email,
+            }
+            )];
         }
     }
 }

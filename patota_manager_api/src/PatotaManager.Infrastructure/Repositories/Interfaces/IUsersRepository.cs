@@ -5,6 +5,6 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories.Inter
 {
     public interface IUsersRepository
     {
-        public IEnumerable<User> GetUsers();
+        public List<UserDTO> GetUsers();
     }
 }

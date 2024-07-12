@@ -1,6 +1,5 @@
 
 using Microsoft.AspNetCore.Mvc;
-using patota_manager_api.src.PatotaManager.Api.DTOs;
 using patota_manager_api.src.PatotaManager.Infrastructure.Repositories.Interfaces;
 
 namespace patota_manager_api.src.PatotaManager.Api.Controllers
@@ -12,23 +11,11 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
         private readonly IUsersRepository _usersRepository = usersRepository;
 
         [HttpGet]
-        public IActionResult GetAllUsers()
+        public Task<IActionResult> GetAllUsers()
         {
             var users = _usersRepository.GetUsers();
 
-            if (users == null)
-            {
-                return NotFound();
-            }
-
-            var response = new List<UsersDTO>();
-
-            foreach (var user in users)
-            {
-                response.Add(new UsersDTO(user));
-            }
-
-            return Ok(response);
+            return Task.FromResult<IActionResult>(Ok(users));
         }
     }
 }

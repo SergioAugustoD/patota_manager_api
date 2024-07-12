@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using patota_manager_api.src.PatotaManager.Common.Helpers;
 using patota_manager_api.src.PatotaManager.Infrastructure.Data;
+using patota_manager_api.src.PatotaManager.Infrastructure.Mappings;
 using patota_manager_api.src.PatotaManager.Infrastructure.Repositories;
 using patota_manager_api.src.PatotaManager.Infrastructure.Repositories.Interfaces;
 
@@ -8,13 +10,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 var conn = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<ApiDbContext>(options =>
-    options.UseSqlite(conn));
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new DateTimeConverter("dd/MM HH:mm"));
+});
+
+builder.Services.AddAutoMapper(typeof(DomainToDTOMapping));
+
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddDbContext<ApiDbContext>();
 
 builder.Services.AddSwaggerGen();
 
