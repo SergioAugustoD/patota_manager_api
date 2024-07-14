@@ -19,25 +19,29 @@ namespace patota_manager_api.src.PatotaManager.Api.Models
 
         [Key]
         [Column("id")]
-        public int UserId { get; private set; }
+        public Guid UserId { get; set; }
 
         [Column("name")]
-        public string Name { get; private set; }
+        [Required]
+        public string Name { get; set; }
 
         [Column("username")]
-        public string Username { get; private set; }
+        [Required]
+        public string Username { get; set; }
 
 
         [Column("email")]
-        public string Email { get; private set; }
+        [Required]
+        public string Email { get; set; }
 
         [JsonIgnore]
         [Column("password_hash")]
-        public string PasswordHash { get; private set; }
+        [Required]
+        public string PasswordHash { get; set; }
 
         [JsonIgnore]
         [Column("created_at")]
-        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }
 

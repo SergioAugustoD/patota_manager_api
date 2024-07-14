@@ -17,10 +17,10 @@
       "applicationUrl": "http://localhost:5177",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "PORT_DB": "6543",
-        "SERVER_DB": "aws-0-sa-east-1.pooler.supabase.com",
-        "USER_DB": "postgres.igskknqmtqipydbqyypq",
-        "PASSWORD_DB": "bfShmidj86fmNgfj"
+        "PORT_DB": "5432",
+        "SERVER_DB": "localhost",
+        "USER_DB": "postgres",
+        "PASSWORD_DB": "Patota2024"
       }
     },
     "https": {
@@ -31,10 +31,10 @@
       "applicationUrl": "https://localhost:7054;http://localhost:5177",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "PORT_DB": "6543",
-        "SERVER_DB": "aws-0-sa-east-1.pooler.supabase.com",
-        "USER_DB": "postgres.igskknqmtqipydbqyypq",
-        "PASSWORD_DB": "bfShmidj86fmNgfj"
+        "PORT_DB": "5432",
+        "SERVER_DB": "localhost",
+        "USER_DB": "postgres",
+        "PASSWORD_DB": "Patota2024"
       }
     },
     "IIS Express": {

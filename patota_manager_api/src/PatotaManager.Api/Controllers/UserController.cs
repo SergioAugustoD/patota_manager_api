@@ -13,16 +13,23 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
         private readonly IUsersRepository _usersRepository = usersRepository;
 
         [HttpGet]
-        public Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> GetUsers()
         {
-            var users = _usersRepository.GetUsers();
-
-            return Task.FromResult<IActionResult>(Ok(users));
+            var response = await _usersRepository.GetUsersAsync();
+            if (response.Success)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return BadRequest(response);
+            }
         }
 
         [HttpPost]
-        public IActionResult CreateUser(UserViewModel userViewModel)
+        public async Task<IActionResult> CreateUser(UserViewModel userViewModel)
         {
+
             var user = new User(
                 userViewModel.Name,
                 userViewModel.Username,
@@ -30,11 +37,8 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
                 userViewModel.Password
             );
 
-
-            _usersRepository.CreateUser(user);
-
-            return Ok(new { status = 200, error = false, message = "Cadastro realizado com sucesso!" });
-
+            var response = await _usersRepository.CreateUserAsync(user);
+            return Ok(response);
 
         }
     }

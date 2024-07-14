@@ -9,7 +9,19 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Data
     {
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Log> Logs { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql(
+                "Server=localhost;" +
+                "Port=5432;" +
+                "Database=postgres;" +
+                "User Id=postgres;" +
+                "Password=Patota2024;"
+                );
+        }
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var portDb = Environment.GetEnvironmentVariable("PORT_DB");
             var serverDb = Environment.GetEnvironmentVariable("SERVER_DB");
@@ -23,6 +35,6 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Data
                 $"User Id={userDb};" +
                 $"Password={passwordDb};"
             );
-        }
+        }*/
     }
 }

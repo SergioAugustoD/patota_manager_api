@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using patota_manager_api.src.PatotaManager.Api.Services;
 using patota_manager_api.src.PatotaManager.Common.Helpers;
 using patota_manager_api.src.PatotaManager.Infrastructure.Data;
 using patota_manager_api.src.PatotaManager.Infrastructure.Mappings;
@@ -25,6 +26,8 @@ builder.Services.AddDbContext<ApiDbContext>();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IUsersRepository, UsersRepository>();
+
+builder.Services.AddScoped<LogService>();
 
 builder.Services.AddCors(options =>
 {
