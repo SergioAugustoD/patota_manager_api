@@ -4,6 +4,7 @@ using patota_manager_api.src.PatotaManager.Api.DTOs;
 using patota_manager_api.src.PatotaManager.Api.Models;
 using patota_manager_api.src.PatotaManager.Api.Services;
 using patota_manager_api.src.PatotaManager.Common.Exceptions;
+using patota_manager_api.src.PatotaManager.Common.Helpers;
 using patota_manager_api.src.PatotaManager.Infrastructure.Data;
 using patota_manager_api.src.PatotaManager.Infrastructure.Repositories.Interfaces;
 
@@ -69,6 +70,7 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories
 
                 using (var context = new ApiDbContext())
                 {
+                    user.PasswordHash = PasswordHelper.HashPassword(user.PasswordHash);
                     await context.Users.AddAsync(user);
                     await context.SaveChangesAsync();
                 }
@@ -122,6 +124,35 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories
             }
         }
 
+        public async Task<ApiResponse> UpdateUserPasswordAsync(string email, string oldPassword, string newPassword)
+        {
+            try
+            {
+
+                var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+                if (user == null)
+                {
+                    return new ApiResponse(false, "Usuário não encontrado.");
+                }
+                if (!PasswordHelper.VerifyPassword(oldPassword, user.PasswordHash))
+                {
+                    return new ApiResponse(false, "Senha antiga nao corresponde.");
+                }
+
+                user.PasswordHash = PasswordHelper.HashPassword(newPassword); // Use um método para hash da senha em um cenário real
+
+                _dbContext.Users.Update(user);
+                await _dbContext.SaveChangesAsync();
+
+                return new ApiResponse(true, "Senha atualizada com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                _ = _logger.InsertLogAsync("Error", "Erro ao atualizar a senha do usuário: " + ex.Message, ex.ToString(), null, "UsersRepository", "UpdateUserPasswordAsync");
+                return new ApiResponse(false, "Erro ao atualizar a senha do usuário.", null, [ex.Message]);
+            }
+        }
 
 
     }

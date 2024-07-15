@@ -14,7 +14,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Models
             Name = name;
             Username = username;
             Email = email;
-            PasswordHash = PasswordHasher.HashPassword(passwordHash);
+            PasswordHash = passwordHash;
         }
 
         [Key]

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using patota_manager_api.src.PatotaManager.Api.Models;
 using patota_manager_api.src.PatotaManager.Api.Models.ViewModel;
+using patota_manager_api.src.PatotaManager.Common.Exceptions;
 using patota_manager_api.src.PatotaManager.Infrastructure.Repositories.Interfaces;
 
 namespace patota_manager_api.src.PatotaManager.Api.Controllers
@@ -40,6 +41,20 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
             var response = await _usersRepository.CreateUserAsync(user);
             return Ok(response);
 
+        }
+
+        [HttpPut("update-password")]
+        public async Task<IActionResult> UpdateUserPassword([FromBody] UpdatePasswordRequest request)
+        {
+            var response = await _usersRepository.UpdateUserPasswordAsync(request.Email, request.OldPassword, request.NewPassword);
+            if (response.Success)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return BadRequest(response);
+            }
         }
     }
 }
