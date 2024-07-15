@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using patota_manager_api.src.PatotaManager.Api.Configurations;
 using patota_manager_api.src.PatotaManager.Api.Models;
 using patota_manager_api.src.PatotaManager.Api.Models.ViewModel;
 using patota_manager_api.src.PatotaManager.Common.Exceptions;
@@ -15,7 +16,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
         private readonly IUsersRepository _usersRepository = usersRepository;
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> GetUsers()
         {
             var response = await _usersRepository.GetUsersAsync();

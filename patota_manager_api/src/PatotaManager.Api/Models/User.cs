@@ -1,6 +1,9 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
+using patota_manager_api.src.PatotaManager.Api.Configurations;
 using patota_manager_api.src.PatotaManager.Common.Helpers;
 
 
@@ -38,6 +41,9 @@ namespace patota_manager_api.src.PatotaManager.Api.Models
         [Column("password_hash")]
         [Required]
         public string PasswordHash { get; set; }
+
+        [Column("role")]
+        public string Role { get; set; }
 
         [JsonIgnore]
         [Column("created_at")]

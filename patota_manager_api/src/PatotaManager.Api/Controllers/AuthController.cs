@@ -43,7 +43,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
                     return BadRequest(new ApiResponse(false, "Senha incorreta.", null, ["Email ou senha inválidos."]));
                 }
 
-                var newToken = JwtService.GetJWTToken(user.Email);
+                var newToken = JwtService.GetJWTToken(user.Email, user.Role);
                 return Ok(new ApiResponse(true, "Login realizado com sucesso.", new { Token = newToken }));
             }
             catch (Exception ex)

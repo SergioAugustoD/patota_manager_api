@@ -8,7 +8,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Services
 {
     public class JwtService
     {
-        public static string GetJWTToken(string email)
+        public static string GetJWTToken(string email, string role)
         {
             var handler = new JwtSecurityTokenHandler();
             var secretKey = Environment.GetEnvironmentVariable("SECRET_JWT_TOKEN");
@@ -18,7 +18,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Services
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = GenerateClaims(email),
+                Subject = GenerateClaims(email, role),
                 SigningCredentials = credentials,
                 Expires = DateTime.UtcNow.AddHours(5),
             };
@@ -30,10 +30,11 @@ namespace patota_manager_api.src.PatotaManager.Api.Services
             return strToken;
         }
 
-        private static ClaimsIdentity GenerateClaims(string email)
+        private static ClaimsIdentity GenerateClaims(string email, string role)
         {
             var ci = new ClaimsIdentity();
             ci.AddClaim(new Claim(ClaimTypes.Name, email));
+            ci.AddClaim(new Claim(ClaimTypes.Role, role));
             return ci;
         }
 

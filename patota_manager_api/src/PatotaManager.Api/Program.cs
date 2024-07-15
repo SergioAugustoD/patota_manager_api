@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using patota_manager_api.src.PatotaManager.Api.Configurations;
 using patota_manager_api.src.PatotaManager.Api.Services;
 using patota_manager_api.src.PatotaManager.Common.Helpers;
 using patota_manager_api.src.PatotaManager.Infrastructure.Data;
@@ -53,7 +54,6 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
 builder.Services.AddTransient<IUsersRepository, UsersRepository>();
 
 builder.Services.AddScoped<LogService>();
@@ -79,6 +79,12 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false
     };
 });
+
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy(Roles.Admin, policy => policy.RequireRole(Roles.Admin))
+    .AddPolicy(Roles.FreeMember, policy => policy.RequireRole(Roles.FreeMember))
+    .AddPolicy(Roles.PremiumMember, policy => policy.RequireRole(Roles.PremiumMember));
+
 
 builder.Services.AddCors(options =>
 {

@@ -92,6 +92,11 @@ namespace patota_manager_api.Migrations
                         .HasColumnType("text")
                         .HasColumnName("password_hash");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("role");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("text")

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using patota_manager_api.src.PatotaManager.Api.Configurations;
 using patota_manager_api.src.PatotaManager.Api.DTOs;
 using patota_manager_api.src.PatotaManager.Api.Models;
 using patota_manager_api.src.PatotaManager.Api.Services;
@@ -27,6 +28,7 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories
                     Username = user.Username,
                     PasswordHash = user.PasswordHash,
                     Email = user.Email,
+                    Role = user.Role
                 }).ToListAsync();
 
                 return new ApiResponse(true, "Usuários recuperados com sucesso.", users);
@@ -75,6 +77,7 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories
 
                 using (var context = new ApiDbContext())
                 {
+                    user.Role = Roles.FreeMember;
                     user.PasswordHash = PasswordHelper.HashPassword(user.PasswordHash);
                     await context.Users.AddAsync(user);
                     await context.SaveChangesAsync();

@@ -15,5 +15,7 @@ namespace patota_manager_api.src.PatotaManager.Api.DTOs
 
         public required string PasswordHash { get; set; }
 
+        public required string Role { get; set; }
+
     }
 }
