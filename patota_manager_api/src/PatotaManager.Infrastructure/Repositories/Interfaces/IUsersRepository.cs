@@ -8,6 +8,8 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories.Inter
     {
         Task<ApiResponse> GetUsersAsync();
 
+        Task<User> GetUserByEmail(string email);
+
         Task<ApiResponse> CreateUserAsync(User user);
 
         Task<ApiResponse> UpdateUserPasswordAsync(string email, string oldPassword, string newPassword);

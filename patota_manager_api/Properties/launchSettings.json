@@ -20,7 +20,8 @@
         "PORT_DB": "5432",
         "SERVER_DB": "localhost",
         "USER_DB": "postgres",
-        "PASSWORD_DB": "Patota2024"
+        "PASSWORD_DB": "Patota2024",
+        "SECRET_JWT_TOKEN": "67cb0ca7-2fe8-4dbe-852d-9345a700181b"
       }
     },
     "https": {
@@ -34,7 +35,8 @@
         "PORT_DB": "5432",
         "SERVER_DB": "localhost",
         "USER_DB": "postgres",
-        "PASSWORD_DB": "Patota2024"
+        "PASSWORD_DB": "Patota2024",
+        "SECRET_JWT_TOKEN": "67cb0ca7-2fe8-4dbe-852d-9345a700181b"
       }
     },
     "IIS Express": {

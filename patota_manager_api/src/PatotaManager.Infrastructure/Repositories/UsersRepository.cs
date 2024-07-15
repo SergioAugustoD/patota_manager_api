@@ -63,6 +63,11 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories
                     return new ApiResponse(false, "O nome de usuário não pode ter mais de 50 caracteres.");
                 }
 
+                if (user.PasswordHash.Length < 8)
+                {
+                    return new ApiResponse(false, "A senha deve ter pelo menos 8 caracteres.");
+                }
+
                 if (string.IsNullOrWhiteSpace(user.PasswordHash))
                 {
                     return new ApiResponse(false, "A senha é obrigatória.");
@@ -153,7 +158,12 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories
                 return new ApiResponse(false, "Erro ao atualizar a senha do usuário.", null, [ex.Message]);
             }
         }
+        public Task<User> GetUserByEmail(string email)
+        {
+            var user = _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
 
+            return user;
+        }
 
     }
 }

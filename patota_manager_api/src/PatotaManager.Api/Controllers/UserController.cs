@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using patota_manager_api.src.PatotaManager.Api.Models;
 using patota_manager_api.src.PatotaManager.Api.Models.ViewModel;
@@ -14,6 +15,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
         private readonly IUsersRepository _usersRepository = usersRepository;
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetUsers()
         {
             var response = await _usersRepository.GetUsersAsync();
@@ -28,6 +30,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateUser(UserViewModel userViewModel)
         {
 
@@ -44,6 +47,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
         }
 
         [HttpPut("update-password")]
+        [Authorize]
         public async Task<IActionResult> UpdateUserPassword([FromBody] UpdatePasswordRequest request)
         {
             var response = await _usersRepository.UpdateUserPasswordAsync(request.Email, request.OldPassword, request.NewPassword);
