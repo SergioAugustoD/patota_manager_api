@@ -33,14 +33,14 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
 
                 if (user == null)
                 {
-                    return BadRequest(new ApiResponse(false, "Usuário não encontrado.", null, ["Usuário inválido."]));
+                    return Ok(new ApiResponse(false, "Email não encontrado.", null, ["Usuário inválido."]));
                 }
 
                 bool isPasswordValid = PasswordHelper.VerifyPassword(model.Password, user.PasswordHash);
 
                 if (!isPasswordValid)
                 {
-                    return BadRequest(new ApiResponse(false, "Senha incorreta.", null, ["Email ou senha inválidos."]));
+                    return Ok(new ApiResponse(false, "Senha incorreta.", null, ["Email ou senha inválidos."]));
                 }
 
                 var newToken = JwtService.GetJWTToken(user.Email, user.Role);
@@ -61,7 +61,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
             {
                 if (string.IsNullOrWhiteSpace(authorizationHeader) || !authorizationHeader.StartsWith("Bearer "))
                 {
-                    return BadRequest(new ApiResponse(false, "Cabeçalho de autorização ausente ou inválido."));
+                    return Ok(new ApiResponse(false, "Cabeçalho de autorização ausente ou inválido."));
                 }
 
                 var token = authorizationHeader.Replace("Bearer ", "");
