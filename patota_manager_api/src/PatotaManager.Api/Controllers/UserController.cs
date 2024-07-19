@@ -9,7 +9,7 @@ using patota_manager_api.src.PatotaManager.Infrastructure.Repositories.Interface
 
 namespace patota_manager_api.src.PatotaManager.Api.Controllers
 {
-    [Route("/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class UserController(IUsersRepository usersRepository) : ControllerBase
     {
