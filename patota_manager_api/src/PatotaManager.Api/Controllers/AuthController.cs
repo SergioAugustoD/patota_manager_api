@@ -44,7 +44,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
                 }
 
                 var newToken = JwtService.GetJWTToken(user.Email, user.Role);
-                return Ok(new ApiResponse(true, "Login realizado com sucesso.", new { Token = newToken }));
+                return Ok(new ApiResponse(true, "Login realizado com sucesso.", new { Token = newToken, User = user }));
             }
             catch (Exception ex)
             {
