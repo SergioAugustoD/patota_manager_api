@@ -66,6 +66,48 @@ namespace patota_manager_api.Migrations
                     b.ToTable("tb_logs");
                 });
 
+            modelBuilder.Entity("patota_manager_api.src.PatotaManager.Api.Models.Teams", b =>
+                {
+                    b.Property<Guid>("TeamId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uuid")
+                        .HasColumnName("created_by");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("location");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("SkillLevel")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("skill_level");
+
+                    b.HasKey("TeamId");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.ToTable("tb_teams");
+                });
+
             modelBuilder.Entity("patota_manager_api.src.PatotaManager.Api.Models.User", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -105,6 +147,17 @@ namespace patota_manager_api.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("tb_user");
+                });
+
+            modelBuilder.Entity("patota_manager_api.src.PatotaManager.Api.Models.Teams", b =>
+                {
+                    b.HasOne("patota_manager_api.src.PatotaManager.Api.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

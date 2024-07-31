@@ -11,6 +11,8 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Data
 
         public DbSet<Log> Logs { get; set; }
 
+        public DbSet<Teams> Teams { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(
