@@ -55,6 +55,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddTransient<IUsersRepository, UsersRepository>();
+builder.Services.AddTransient<ITeamRepository, TeamRepository>();
 
 builder.Services.AddScoped<LogService>();
 

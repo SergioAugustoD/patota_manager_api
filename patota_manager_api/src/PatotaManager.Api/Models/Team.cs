@@ -6,18 +6,16 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace patota_manager_api.src.PatotaManager.Api.Models
 {
-    [Table("tb_teams")]
-    public record Teams
+    [Table("tb_team")]
+    public record Team
     {
-        public Teams(Guid teamId, string name, string location, string skillLevel, string description, Guid createdBy, DateTime createdAt)
+        public Team(string name, string location, string skillLevel, string description, Guid createdBy)
         {
-            TeamId = teamId;
             Name = name;
             Location = location;
             SkillLevel = skillLevel;
             Description = description;
             CreatedBy = createdBy;
-            CreatedAt = createdAt;
         }
 
         [Key]
@@ -42,7 +40,7 @@ namespace patota_manager_api.src.PatotaManager.Api.Models
 
         [Column("created_by")]
         [ForeignKey(nameof(User))]
-        public Guid CreatedBy {  get; set; }
+        public Guid CreatedBy { get; set; }
         public User User { get; set; }
 
         [JsonIgnore]
