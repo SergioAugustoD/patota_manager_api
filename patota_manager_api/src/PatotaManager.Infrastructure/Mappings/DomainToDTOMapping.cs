@@ -24,6 +24,7 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Mappings
                 .ForMember(dest => dest.SkillLevel, opt => opt.MapFrom(src => src.SkillLevel))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
                 .ForMember(dest => dest.CreatedBy, opt => opt.MapFrom(src => src.CreatedBy))
+                .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User))
                 .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
                 .ForMember(dest => dest.Uf, opt => opt.MapFrom(src => src.Uf))
                 .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))

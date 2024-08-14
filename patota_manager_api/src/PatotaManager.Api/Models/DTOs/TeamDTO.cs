@@ -20,5 +20,7 @@
         public string Description { get; set; }
 
         public Guid CreatedBy { get; set; }
+
+        public User User { get; set; }
     }
 }

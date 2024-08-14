@@ -32,7 +32,8 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories
                     AddressNumber = team.AddressNumber,
                     SkillLevel = team.SkillLevel,
                     Description = team.Description,
-                    CreatedBy = team.CreatedBy
+                    CreatedBy = team.CreatedBy,
+                    User = team.User
                 }).ToArrayAsync();
 
                 return new ApiResponse(true, "Patotas recuperadas com sucesso.", teams);
