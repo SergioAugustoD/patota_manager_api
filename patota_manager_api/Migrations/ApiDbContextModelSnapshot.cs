@@ -66,12 +66,26 @@ namespace patota_manager_api.Migrations
                     b.ToTable("tb_logs");
                 });
 
-            modelBuilder.Entity("patota_manager_api.src.PatotaManager.Api.Models.Teams", b =>
+            modelBuilder.Entity("patota_manager_api.src.PatotaManager.Api.Models.Team", b =>
                 {
                     b.Property<Guid>("TeamId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("id");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("address");
+
+                    b.Property<int>("AddressNumber")
+                        .HasColumnType("integer")
+                        .HasColumnName("address_number");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("city");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone")
@@ -86,11 +100,6 @@ namespace patota_manager_api.Migrations
                         .HasColumnType("text")
                         .HasColumnName("description");
 
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("location");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
@@ -101,11 +110,16 @@ namespace patota_manager_api.Migrations
                         .HasColumnType("text")
                         .HasColumnName("skill_level");
 
+                    b.Property<string>("Uf")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("uf");
+
                     b.HasKey("TeamId");
 
                     b.HasIndex("CreatedBy");
 
-                    b.ToTable("tb_teams");
+                    b.ToTable("tb_team");
                 });
 
             modelBuilder.Entity("patota_manager_api.src.PatotaManager.Api.Models.User", b =>
@@ -149,7 +163,7 @@ namespace patota_manager_api.Migrations
                     b.ToTable("tb_user");
                 });
 
-            modelBuilder.Entity("patota_manager_api.src.PatotaManager.Api.Models.Teams", b =>
+            modelBuilder.Entity("patota_manager_api.src.PatotaManager.Api.Models.Team", b =>
                 {
                     b.HasOne("patota_manager_api.src.PatotaManager.Api.Models.User", "User")
                         .WithMany()

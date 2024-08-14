@@ -26,7 +26,10 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories
                 {
                     TeamId = team.TeamId,
                     Name = team.Name,
-                    Location = team.Location,
+                    City = team.City,
+                    Uf = team.Uf,
+                    Address = team.Address,
+                    AddressNumber = team.AddressNumber,
                     SkillLevel = team.SkillLevel,
                     Description = team.Description,
                     CreatedBy = team.CreatedBy

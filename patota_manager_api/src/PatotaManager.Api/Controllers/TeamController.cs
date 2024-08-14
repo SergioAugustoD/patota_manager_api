@@ -37,7 +37,10 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
         {
             var team = new Team(
                 teamViewModel.Name,
-                teamViewModel.Location,
+                teamViewModel.City,
+                teamViewModel.Uf,
+                teamViewModel.Address,
+                teamViewModel.AddressNumber,
                 teamViewModel.SkillLevel,
                 teamViewModel.Description,
                 teamViewModel.CreatedBy

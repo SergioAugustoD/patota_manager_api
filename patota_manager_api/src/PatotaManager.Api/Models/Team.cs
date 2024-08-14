@@ -9,10 +9,13 @@ namespace patota_manager_api.src.PatotaManager.Api.Models
     [Table("tb_team")]
     public record Team
     {
-        public Team(string name, string location, string skillLevel, string description, Guid createdBy)
+        public Team(string name, string city, string uf, string address, int addressNumber, string skillLevel, string description, Guid createdBy)
         {
             Name = name;
-            Location = location;
+            City = city;
+            Uf = uf;
+            Address = address;
+            AddressNumber = addressNumber;
             SkillLevel = skillLevel;
             Description = description;
             CreatedBy = createdBy;
@@ -26,9 +29,21 @@ namespace patota_manager_api.src.PatotaManager.Api.Models
         [Required]
         public string Name { get; set; }
 
-        [Column("location")]
+        [Column("city")]
         [Required]
-        public string Location { get; set; }
+        public string City { get; set; }
+
+        [Column("uf")]
+        [Required]
+        public string Uf { get; set; }
+
+        [Column("address")]
+        [Required]
+        public string Address { get; set; }
+
+        [Column("address_number")]
+        [Required]
+        public int AddressNumber { get; set; }
 
         [Column("skill_level")]
         [Required]

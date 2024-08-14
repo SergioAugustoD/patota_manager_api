@@ -12,7 +12,7 @@ namespace patota_manager_api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "tb_teams",
+                name: "tb_team",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -25,9 +25,9 @@ namespace patota_manager_api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_teams", x => x.id);
+                    table.PrimaryKey("PK_tb_team", x => x.id);
                     table.ForeignKey(
-                        name: "FK_tb_teams_tb_user_created_by",
+                        name: "FK_tb_team_tb_user_created_by",
                         column: x => x.created_by,
                         principalTable: "tb_user",
                         principalColumn: "id",
@@ -35,8 +35,8 @@ namespace patota_manager_api.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_teams_created_by",
-                table: "tb_teams",
+                name: "IX_tb_team_created_by",
+                table: "tb_team",
                 column: "created_by");
         }
 
@@ -44,7 +44,7 @@ namespace patota_manager_api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tb_teams");
+                name: "tb_team");
         }
     }
 }
