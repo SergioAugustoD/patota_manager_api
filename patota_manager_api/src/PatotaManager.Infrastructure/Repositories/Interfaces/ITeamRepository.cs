@@ -12,5 +12,7 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories.Inter
         Task<ApiResponse> GetTeamsAsync();
 
         Task<ApiResponse> CreateTeamAsync(Team team);
+
+        Task<ApiResponse> GetTeamDetailsAsync(Guid id);
     }
 }

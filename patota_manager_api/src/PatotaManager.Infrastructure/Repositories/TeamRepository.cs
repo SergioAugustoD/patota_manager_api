@@ -45,6 +45,26 @@ namespace patota_manager_api.src.PatotaManager.Infrastructure.Repositories
             }
         }
 
+        public async Task<ApiResponse> GetTeamDetailsAsync(Guid id)
+        {
+            try
+            {
+                ArgumentNullException.ThrowIfNull(id);
+
+                var team = await _dbContext.Teams
+                .FirstOrDefaultAsync(team => team.TeamId.Equals(id));
+
+
+                return new ApiResponse(true, "Patotas recuperadas com sucesso.", team);
+            }
+            catch (Exception ex)
+            {
+
+                _ = _logger.InsertLogAsync("Error", "Erro ao recuperar detalhes da patota: " + ex.Message, ex.ToString(), null, "TeamsRepository", "GetTeamDetails");
+                return new ApiResponse(false, "Erro ao recuperar detalhes da patota.", null, new List<string> { ex.Message });
+            }
+        }
+
         public async Task<ApiResponse> CreateTeamAsync(Team team)
         {
             try

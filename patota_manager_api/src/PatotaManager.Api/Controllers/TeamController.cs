@@ -31,6 +31,21 @@ namespace patota_manager_api.src.PatotaManager.Api.Controllers
             }
         }
 
+        [HttpGet("team-details/{id}")]
+        [Authorize]
+        public async Task<IActionResult> GetTeamDetails(Guid id)
+        {
+            var response = await _teamsRepository.GetTeamDetailsAsync(id);
+            if (response.Success)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return BadRequest(response);
+            }
+        }
+
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> CreateTeam(TeamViewModel teamViewModel)
